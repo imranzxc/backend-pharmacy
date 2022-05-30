@@ -24,7 +24,8 @@ module.exports.cartController = {
       const pill = await Pill.findById(req.body.products);
       const cart = await Cart.findById(req.params.id);
       const user = await User.findById(req.params.userId);
-
+      console.log(user);
+      console.log(cart);
       if (cart.user == req.params.userId) {
         if (pill.recipe && !user.hasRecipe) {
           return res.json("Sorry! You dont have recipe for this pill");

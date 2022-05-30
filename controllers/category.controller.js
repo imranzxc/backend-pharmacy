@@ -6,18 +6,18 @@ const Pill = require("../models/Pill.model");
 module.exports.categoryController = {
   postCat: async (req, res) => {
     try {
-      await User.create({
+      const cat = await Category.create({
         name: req.body.name,
         description: req.body.description,
       });
-      res.json("Category has been added");
+      res.json(cat);
     } catch (err) {
       res.json("Issues when creating category");
     }
   },
   getAllCat: async (req, res) => {
     try {
-      const allCat = await Category.find({});
+      const allCat = await Category.find();
       res.json(allCat);
     } catch (err) {
       res.json("Issue when getting all categories");

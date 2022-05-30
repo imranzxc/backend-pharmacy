@@ -6,12 +6,17 @@ const Pill = require("../models/Pill.model");
 module.exports.userController = {
   postUser: async (req, res) => {
     try {
-      await User.create({
+      const user = await User.create({
         name: req.body.name,
         cash: req.body.cash,
         hasRecipe: req.body.hasRecipe,
       });
-      res.json("User has been added");
+
+      await Cart.create({
+        user: user._id
+      })
+
+      res.json(user);
     } catch (err) {
       res.json("Issues when creating user");
     }
@@ -47,4 +52,13 @@ module.exports.userController = {
       res.json("Issue when getting pills by category");
     }
   },
+
+  getUser: async (req,res) => {
+    try{
+      const allUser = await User.find({})
+      res.json(allUser)
+    } catch(err) {
+      res.json('issues when getting users')
+    }
+  }
 };

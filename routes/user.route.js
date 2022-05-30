@@ -5,7 +5,8 @@ const { userController } = require('../controllers/user.controller')
 const router = Router()
 
 router.post('/user', userController.postUser)
-router.get('/user/pill,', userController.getAllPills)
+router.get('/user', userController.getUser)
+router.get('/user/pill', userController.getAllPills)
 router.get('/user/category/pill/:id,', userController.getPillsByCat)
 router.get('/user/pill/:id', userController.getPillsById)
 
